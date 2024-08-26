@@ -1,0 +1,159 @@
+/* Colours:
+navbar bg: #1a237e
+main bg: #fafafa
+accent bg: #eab308
+main text: #1a237e
+alt text: #eef2ff
+text hover: #fff176 
+*/
+
+/* MAIN STYLING */
+html,
+body {
+  margin: 0;
+  background-color: #fafafa;
+  color: #1a237e;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+main {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  max-width: 1280px;
+
+  padding: 0 1rem 0 1rem;
+  font-size: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+button {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.mainContainer {
+  min-height: 40vh;
+}
+
+/* NAVIGATION STYLING */
+
+header {
+  background-color: #1a237e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.15s ease;
+  color: #eef2ff;
+  font-weight: bold;
+  font-size: 1.5rem;
+  list-style-type: none;
+  padding: 1rem 2rem 1rem 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header a {
+  text-decoration: none;
+  color: #f8fafc;
+  transition: color 0.15s ease;
+}
+
+.active a {
+  color: #fbbf24;
+}
+
+header a:hover {
+  color: #f59e0b;
+  transition: color 0.15s ease;
+}
+
+.navList {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+a:hover {
+  color: #34d399;
+  transition: color 0.15s ease;
+}
+
+/* FOOTER STYLING */
+
+footer {
+  background-color: #1a237e;
+  color: #eef2ff;
+  padding: 1rem 2rem 1rem 2rem;
+  /* Keep footer at bottom of screen at all times */
+  /* position: fixed;
+  width: 100%;
+  bottom: 0; */
+  /* Alternatively, we can keep footer as the last element on the page by removing the 
+    above 3 properties, and instead using a vh of ~83 on the main tag for 1080p screen height */
+}
+
+.footer {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4em;
+}
+
+/* GRID STYLING */
+.gridContainer {
+  display: grid;
+  /* 2 columns for the default grid container */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  /* approx 24px gap between cols */
+  gap: 1.5rem;
+}
+
+/* CARD STYLING */
+.card {
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  background-color: #f9fafb;
+  /* padding: 0.5rem 1rem; */
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.375rem;
+  padding: 1.5rem;
+}
+
+.cardContent {
+  padding: 1.5rem;
+}
+
+/* STYLING FOR SVG AND GRAPHS */
+
+/* used to hold all our svgs */
+.svgContainer {
+  width: 100%;
+  vertical-align: top;
+  overflow: hidden;
+}
+
+svg {
+  height: 100%;
+  max-width: 100%;
+  vertical-align: bottom;
+}

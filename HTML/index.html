@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="COS30045 Data Visualisation Assignment" />
+  <meta name="keywords" content="html, css, js, d3" />
+  <meta name="author" content="Tim Heibach - 9719539, Jesse Hommelhoff - 104868037" />
+  <link href="/Style/style.css" rel="stylesheet" type="text/css" />
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <title>COS30045 Data Visualisation Assignment</title>
+</head>
+
+<body>
+  <!-- Combined header and navigation menu  -->
+  <header class="header">
+    <!-- unordered list with links for all site pages -->
+    <div>
+      <li class="active"><a href="index.html">Home</a></li>
+    </div>
+    <nav>
+      <ul class="navList">
+        <li><a href="economy.html">Economic Data</a></li>
+        <li><a href="healthCare.html">Healthcare Data</a></li>
+        <li><a href="household.html">Household data</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- main container -->
+  <main class="mainContainer">
+    <!-- main title -->
+    <div>
+      <h1>COS30045 Data Visualisation Assignment</h1>
+    </div>
+    <!-- main content -->
+    <div>
+
+      <!-- all content under the main container will be roughly screen wide -->
+      <!-- Visualisation Card example with no graph -->
+      <div class="card">
+        <div class="cardHeader">
+          <h3>Sample Title</h3>
+          <p>Sample Description</p>
+        </div>
+        <div class="cardContent">
+          <p>12,000,000</p>
+        </div>
+      </div>
+
+
+      <!-- Grid for displaying multiple graphs -->
+      <!-- all content in the grid will be roughly half screen size -->
+      <div class="gridContainer">
+        <!-- Visualisation Card example with graph -->
+        <div class="card">
+          <div class="cardHeader">
+            <h3>A basic bar graph</h3>
+          </div>
+          <div class="cardContent">
+            <div class="svgContainer" id="graph1">
+              <!-- Load script (id for container is hard coded) -->
+              <script src="/Script/sampleGraph.js">
+              </script>
+            </div>
+            <p>This bar graph is just an example</p>
+          </div>
+        </div>
+
+        <!-- Visualisation Card example with graph -->
+        <div class="card">
+          <div class="cardHeader">
+            <h3>A basic bar graph</h3>
+          </div>
+          <div class="cardContent">
+            <div class="svgContainer" id="graph2">
+              <!-- Load script (id for container is hard coded) -->
+              <script src="/Script/sampleGraph2.js">
+              </script>
+            </div>
+            <p>This bar graph is just an example</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+
+  </main>
+  <!-- footer -->
+  <footer>
+    <div class="footer">
+      <span>COS30045 Data Visualisation Assignment</span>
+      <span>Made by Tim Heibach (9719539) & Jesse Hommelhoff (104868037)</span>
+    </div>
+  </footer>
+
+</body>
+
+</html>
