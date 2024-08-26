@@ -13,8 +13,8 @@ function graph(parentid) {
     .append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
     .attr("viewBox", "0 0 400 400");
-  // use viewbox and preserve aspect ratio to allow for more responsive chart sizes
-  // this means we do not need to hardcode a width or height attribute to our charts
+  // .attr("width", w)
+  // .attr("height", h);
 
   // set scales
   let xScale = d3
@@ -65,5 +65,5 @@ function graph(parentid) {
 
 // Draw the graph once the DOM is fully loaded to the hardcoded id
 document.addEventListener("DOMContentLoaded", function () {
-  graph("graph1");
+  graph("graph2");
 });
