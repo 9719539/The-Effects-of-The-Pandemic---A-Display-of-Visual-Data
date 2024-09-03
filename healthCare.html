@@ -35,8 +35,64 @@
     <!-- main content -->
     <div>
 
-    </div>
+      <!-- all content under the main container will be roughly screen wide -->
+      <!-- Visualisation Card example with no graph -->
+      <div class="card">
+        <div class="cardHeader">
+          <h3>A Diagnosis of Healthcare</h3>
+          <p>Our hospitals and medical clinics faced an unprecedented wave of changes as they moved to adapt to a new challenge not seen in decades. Changes
+            were made to how our hopsitals were run, what was prioritised, how resources were managed and even the administration of new and returning staff.
+            As hospitals adapted and changed their approach, the data they left behind truly demonstrated just how impactful the pandemic was on our 
+            healthcare system.
+          </p>
+        </div>
+        <div class="cardButtons">
+          <div class="NavButtonLeft">
+            <a href="economy.html"><button>Previous Page (Economic Data)</button></a>
+          </div>
+          <div class="NavButtonRight">
+            <a href="household.html"><button>Next Page (Household Data)</button></a>
+          </div>
+        </div>
+      </div>
 
+
+      <!-- Grid for displaying multiple graphs -->
+      <!-- all content in the grid will be roughly half screen size -->
+      <div class="gridContainer">
+        <!-- Visualisation Card example with graph -->
+        <div class="card">
+          <div class="cardHeader">
+            <h3>A basic bar graph</h3>
+          </div>
+          <div class="cardContent">
+            <div class="svgContainer" id="graph1">
+              <!-- Load script (id for container is hard coded) -->
+              <script src="/Script/sampleGraph.js">
+              </script>
+            </div>
+            <p>This bar graph is just an example</p>
+          </div>
+        </div>
+
+        <!-- Visualisation Card example with graph -->
+        <div class="card">
+          <div class="cardHeader">
+            <h3>A basic bar graph</h3>
+          </div>
+          <div class="cardContent">
+            <div class="svgContainer" id="graph2">
+              <!-- Load script (id for container is hard coded) -->
+              <script src="/Script/sampleGraph2.js">
+              </script>
+            </div>
+            <p>This bar graph is just an example</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  
   </main>
   <!-- footer -->
   <footer>
