@@ -41,6 +41,13 @@ button {
   padding-bottom: 0.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  font-weight: bold;
+  transition: color 0.15s ease;
+}
+
+button:hover {
+  transition: color 0.15s ease;
+  color: #f59e0b;
 }
 
 .mainContainer {
@@ -97,7 +104,7 @@ a:hover {
   display: flex;
 }
 
-.NavButtonRight { 
+.NavButtonRight {
   display: flex;
   flex-direction: row-reverse;
   padding: 1.5rem;
