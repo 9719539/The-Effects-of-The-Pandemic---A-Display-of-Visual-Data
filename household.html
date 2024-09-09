@@ -35,8 +35,58 @@
     <!-- main content -->
     <div>
 
-    </div>
+      <!-- all content under the main container will be roughly screen wide -->
+      <!-- Visualisation Card example with no graph -->
+      <div class="card">
+        <div class="cardHeader">
+          <h3>How We Lived</h3>
+          <p>The effects of the pandemic didn't just change our economy, and it didn't just change our healthcare either. It even changed the very way we lived our lives.
+             We saw lockdowns, restrictions, government payment packages and the rise in work from home jobs just to name a few examples. This page looks at some further examples
+             of how the pandemic changed our way of life.
+          </p>
+        </div>
+        <div class="NavButtonLeft">
+          <a href="healthCare.html"><button>Previous Page (Healthcare Data)</button></a>
+        </div>
+      </div>
 
+
+      <!-- Grid for displaying multiple graphs -->
+      <!-- all content in the grid will be roughly half screen size -->
+      <div class="gridContainer">
+        <!-- Visualisation Card example with graph -->
+        <div class="card">
+          <div class="cardHeader">
+            <h3>A basic bar graph</h3>
+          </div>
+          <div class="cardContent">
+            <div class="svgContainer" id="graph1">
+              <!-- Load script (id for container is hard coded) -->
+              <script src="/Script/sampleGraph.js">
+              </script>
+            </div>
+            <p>This bar graph is just an example</p>
+          </div>
+        </div>
+
+        <!-- Visualisation Card example with graph -->
+        <div class="card">
+          <div class="cardHeader">
+            <h3>A basic bar graph</h3>
+          </div>
+          <div class="cardContent">
+            <div class="svgContainer" id="graph2">
+              <!-- Load script (id for container is hard coded) -->
+              <script src="/Script/sampleGraph2.js">
+              </script>
+            </div>
+            <p>This bar graph is just an example</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  
   </main>
   <!-- footer -->
   <footer>

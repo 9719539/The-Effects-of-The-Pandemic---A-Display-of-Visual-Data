@@ -33,6 +33,10 @@ h1 {
 }
 
 button {
+  background-color: #1a237e;
+  text-decoration: none;
+  color: #f8fafc;
+  border-radius: 5px;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 1rem;
@@ -85,6 +89,24 @@ header a:hover {
 a:hover {
   color: #34d399;
   transition: color 0.15s ease;
+}
+
+.cardButtons {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+
+.NavButtonRight { 
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 1.5rem;
+}
+
+.NavButtonLeft {
+  display: flex;
+  flex-direction: row;
+  padding: 1.5rem;
 }
 
 /* FOOTER STYLING */
