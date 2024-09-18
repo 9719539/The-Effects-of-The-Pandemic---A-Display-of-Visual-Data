@@ -7,6 +7,9 @@
   <meta name="keywords" content="html, css, js, d3" />
   <meta name="author" content="Tim Heibach - 9719539, Jesse Hommelhoff - 104868037" />
   <link href="/Style/style.css" rel="stylesheet" type="text/css" />
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- Load script (id for container is hard coded) -->
+  <script src="/Script/healthCare.js"></script>
   <title>COS30045 Data Visualisation Assignment</title>
 </head>
 
@@ -40,9 +43,12 @@
       <div class="card">
         <div class="cardHeader">
           <h3>A Diagnosis of Healthcare</h3>
-          <p>Our hospitals and medical clinics faced an unprecedented wave of changes as they moved to adapt to a new challenge not seen in decades. Changes
-            were made to how our hopsitals were run, what was prioritised, how resources were managed and even the administration of new and returning staff.
-            As hospitals adapted and changed their approach, the data they left behind truly demonstrated just how impactful the pandemic was on our 
+          <p>Our hospitals and medical clinics faced an unprecedented wave of changes as they moved to adapt to a new
+            challenge not seen in decades. Changes
+            were made to how our hopsitals were run, what was prioritised, how resources were managed and even the
+            administration of new and returning staff.
+            As hospitals adapted and changed their approach, the data they left behind truly demonstrated just how
+            impactful the pandemic was on our
             healthcare system.
           </p>
         </div>
@@ -64,13 +70,18 @@
         <div class="card">
           <div class="cardHeader">
             <h3>A basic bar graph</h3>
+            <h4 id="choroInfo">Highest cases: </h4>
           </div>
           <div class="cardContent">
             <div class="svgContainer" id="graph1">
-              <!-- Load script (id for container is hard coded) -->
-              <script src="/Script/sampleGraph.js">
-              </script>
             </div>
+            <span>
+              <button id='btn2020'>2020</button>
+              <button id='btn2021'>2021</button>
+              <button id='btn2022'>2022</button>
+              <button id='btn2023'>2023</button>
+              <button id='btnTotal'>Total</button>
+            </span>
             <p>This bar graph is just an example</p>
           </div>
         </div>
@@ -92,7 +103,7 @@
       </div>
 
     </div>
-  
+
   </main>
   <!-- footer -->
   <footer>
