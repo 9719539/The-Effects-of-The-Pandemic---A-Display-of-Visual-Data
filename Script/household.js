@@ -73,7 +73,7 @@ function drawStack(id) {
     svg
       .append("g")
       .call(d3.axisLeft(yScale))
-      .attr("class", "y axis")
+      .attr("class", "y-axis")
       .attr("text-anchor", "start")
       .attr("transform", `translate(${margin}, 0)`);
 
@@ -96,7 +96,90 @@ function drawStack(id) {
   });
 }
 
+function drawBarChart(id) {
+  // load data from csv
+  const dir =
+    "../Datasets/Stimulus payment uses for persons aged 18 years and over receiving the JobKeeper Payment(a)(b).csv";
+  d3.csv(dir).then((data) => {
+    const dataMap = Object.entries(data[0]).map(([key, value]) => ({
+      key: key.slice(0, -3), // slice the last 3 characters from the string to remove (%)
+      value: +value,
+    }));
+    // remove first entry from map as it's not useful for our chart
+    const mappedData = [...dataMap].filter((_, index) => index !== 0);
+    console.log(mappedData);
+
+    // set values
+    const w = 400;
+    const h = 400;
+    const padding = 25;
+
+    // create svg
+    const svg = d3
+      .select(`#${id}`)
+      .append("svg")
+      .attr("preserveAspectRatio", "xMinYMin meet")
+      .attr("viewBox", [0, 0, w, h]);
+    // use viewbox and preserve aspect ratio to allow for more responsive chart sizes
+    // this means we do not need to hardcode a width or height attribute to our charts
+
+    // sort data
+    mappedData.sort(function (b, a) {
+      return a.value - b.value;
+    });
+
+    // create scales
+    const xScale = d3
+      .scaleBand()
+      .range([0, w - padding])
+      .domain(mappedData.map((d) => d.key))
+      .padding(0.2);
+
+    const yScale = d3
+      .scaleLinear()
+      .domain([0, 100])
+      .range([h - padding, padding]);
+
+    svg
+      .append("g")
+      .attr("transform", `translate(${padding}, ${0})`)
+      .call(d3.axisLeft(yScale));
+
+    // add bars
+    svg
+      .append("g")
+      .attr("class", "bars")
+      .selectAll("rect")
+      .data(mappedData)
+      .enter()
+      .append("rect")
+      .attr("x", (d, i) => xScale(d.key) + padding) // set x dynamically
+      .attr("y", (d) => yScale(d.value)) // set y dynamically
+      .attr("width", xScale.bandwidth()) // set width to our xScale
+      .attr("height", (d) => h - padding - yScale(d.value))
+      .attr("fill", "#eab308") // set colour of bars
+      .append("title") // create tooltip when hovered
+      .text((d) => `${d.key} \n${d.value}%`);
+
+    svg
+      .append("g")
+      .attr("transform", `translate(${padding}, ${h - padding})`)
+      .call(d3.axisBottom(xScale))
+      .selectAll("text")
+      .attr("class", "smllabel")
+      .attr("transform", "translate(-10,-5)rotate(-90)")
+      .style("text-anchor", "start");
+  });
+}
+
 // Draw the graph once the DOM is fully loaded to the hardcoded id
 document.addEventListener("DOMContentLoaded", function () {
   drawStack("graph1");
+  drawBarChart("graph2");
 });
+
+// A standard bar chart showing how people aged over 18 in Victoria used their
+// JobKeeper stimulus payments in 2020. The data we selected for this visualisation was fairly limited.
+// When dealing with a limited dataset, we found it most practical to approach the visualization of the
+// data with a simplistic method of encoding. This led to the decision to use a bar chart to represent
+// this data.
