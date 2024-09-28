@@ -18,18 +18,6 @@ function drawChoropleth(id) {
     "rgb(8,29,88)",
   ];
 
-  const rangered = [
-    "rgb(255,255,229)",
-    "rgb(255,247,188)",
-    "rgb(254,227,145)",
-    "rgb(254,196,79)",
-    "rgb(254,153,41)",
-    "rgb(236,112,20)",
-    "rgb(204,76,2)",
-    "rgb(153,52,4)",
-    "rgb(102,37,6)",
-  ];
-
   const projection = d3
     .geoMercator()
     .center([145, -36.5])
@@ -74,12 +62,6 @@ function drawChoropleth(id) {
       // create color domain for our data
       let min = 0;
       let max = d3.max(mappedData, (d) => d[dataRange]);
-
-      // alternative colour scale using built in colours
-      // const colorScale = d3
-      //   .scaleSequential()
-      //   .domain([min, max])
-      //   .interpolator(d3.interpolateBlues);
 
       // colour scale using rgb range defined at top of function
       const colorScale = d3.scaleQuantize().domain([min, max]).range(rangeblue);
@@ -153,13 +135,6 @@ function drawChoropleth(id) {
         updateMap("TotalCases");
       });
     });
-
-    // function updateData(type) {
-    //   dataRange = type;
-    //   paths.attr("d").attr("fill", (d) => color(d.properties[dataRange]));
-    // }
-
-    // updateData("Cases2020");
   });
 }
 
@@ -167,3 +142,7 @@ function drawChoropleth(id) {
 document.addEventListener("DOMContentLoaded", function () {
   drawChoropleth("graph1");
 });
+
+// data used for bubble chart
+// spread of employees in healthcare in 2020
+// col 2, col 5 (aus), col 7 year, col 9 value
