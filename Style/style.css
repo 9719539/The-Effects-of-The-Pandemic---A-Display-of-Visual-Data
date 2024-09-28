@@ -186,3 +186,21 @@ svg {
   max-width: 100%;
   vertical-align: bottom;
 }
+
+/* styles for tick labels in horizontal stacked bar chart */
+.tick text {
+  transform: translate(15px, 0px);
+  stroke-width: 0.01rem;
+  stroke: black;
+}
+
+/* styles for legends displayed at top of horizontal stacked bar chart */
+.legend {
+  display: flex;
+  flex-direction: row;
+}
+
+.legendItem {
+  display: flex;
+  margin: 0rem 1rem;
+}
