@@ -10,7 +10,7 @@ function drawChoropleth(id) {
     // "rgb(255,255,217)",
     // "rgb(237,248,177)",
     // "rgb(199,233,180)",
-    "rgb(195,195,195)",
+    "rgb(135,160,188)",
     "rgb(127,205,187)",
     "rgb(65,182,196)",
     "rgb(29,145,192)",
@@ -68,7 +68,7 @@ function drawChoropleth(id) {
       const colorScale = d3.scaleQuantize().domain([min, max]).range(rangeblue);
 
       max = d3.max(mappedData, (d) => d[dataRange]);
-      d3.select("#choroInfo").text(`Highest cases: ${max}`);
+      d3.select("#highestCases").text(`Total Highest cases: ${max}`);
 
       // draw lgas
       const paths = svg
@@ -81,17 +81,25 @@ function drawChoropleth(id) {
         .attr("fill", (d) => colorScale(d.properties[dataRange] || 0))
         .attr("stroke", "#fff")
         .attr("stroke-width", 0.5)
-        .on("mouseover", function (event, d) {
+        .on("mouseover", function (d, i) {
           d3.select(this).attr("stroke", "gold").attr("stroke-width", 1.5);
+          d3.select("#cases").text(
+            `Cases in ${d.properties.LGA_name}: ${d.properties[dataRange] || 0}`
+          );
         })
         .on("mouseout", function () {
           d3.select(this).attr("stroke", "#fff").attr("stroke-width", 0.5);
+          d3.select("#cases").text(
+            "Mouse over an LGA to see the number of cases"
+          );
         });
 
+      console.log(json.features);
       // Function to update the map
       function updateMap(selectedData) {
         console.log(`updating map with ${selectedData}`);
         max = d3.max(json.features, (d) => d.properties[selectedData] || 0);
+        d3.select("#highestCases").text(`Total Highest cases: ${max}`);
         colorScale.domain([0, max]);
 
         svg.selectAll("*").remove(); // Clear existing map elements
@@ -105,35 +113,58 @@ function drawChoropleth(id) {
           .attr("fill", (d) => colorScale(d.properties[selectedData] || 0))
           .attr("stroke", "#fff")
           .attr("stroke-width", 0.5)
-          .on("mouseover", function (event, d) {
+          .on("mouseover", function (d, i) {
             d3.select(this).attr("stroke", "gold").attr("stroke-width", 1.5);
+            d3.select("#cases").text(
+              `Cases in ${d.properties.LGA_name}: ${
+                d.properties[selectedData] || 0
+              }`
+            );
           })
           .on("mouseout", function () {
             d3.select(this).attr("stroke", "#fff").attr("stroke-width", 0.5);
+            d3.select("#cases").text(
+              "Mouse over an LGA to see the number of cases"
+            );
           });
 
         d3.select("#choroInfo").text(`Highest cases: ${max}`);
       }
 
+      // handle button class changes
+      function updateButtons() {
+        d3.selectAll(".cbtn").classed("selected", false);
+      }
+
       // bind buttons to change choropleth data
       d3.select("#btn2020").on("click", function () {
+        updateButtons();
         updateMap("Cases2020");
+        d3.select("#btn2020").classed("selected", true);
       });
 
       d3.select("#btn2021").on("click", function () {
+        updateButtons();
         updateMap("Cases2021");
+        d3.select("#btn2021").classed("selected", true);
       });
 
       d3.select("#btn2022").on("click", function () {
+        updateButtons();
         updateMap("Cases2022");
+        d3.select("#btn2022").classed("selected", true);
       });
 
       d3.select("#btn2023").on("click", function () {
+        updateButtons();
         updateMap("Cases2023");
+        d3.select("#btn2023").classed("selected", true);
       });
 
       d3.select("#btnTotal").on("click", function () {
+        updateButtons();
         updateMap("TotalCases");
+        d3.select("#btnTotal").classed("selected", true);
       });
     });
   });

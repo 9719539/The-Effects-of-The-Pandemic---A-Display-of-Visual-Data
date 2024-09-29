@@ -69,18 +69,19 @@
         <!-- Visualisation Card example with graph -->
         <div class="card">
           <div class="cardHeader">
-            <h3>A basic bar graph</h3>
-            <h4 id="choroInfo">Highest cases: </h4>
+            <h3>Number of cases broken down by Victorian LGA</h3>
+            <h4 id="highestCases">Total Highest cases: </h4>
+            <span id="cases">Mouse over an LGA to see the number of cases</span>
           </div>
           <div class="cardContent">
             <div class="svgContainer" id="graph1">
             </div>
             <span>
-              <button id='btn2020'>2020</button>
-              <button id='btn2021'>2021</button>
-              <button id='btn2022'>2022</button>
-              <button id='btn2023'>2023</button>
-              <button id='btnTotal'>Total</button>
+              <button id='btn2020' class="cbtn">2020</button>
+              <button id='btn2021' class="cbtn">2021</button>
+              <button id='btn2022' class="cbtn">2022</button>
+              <button id='btn2023' class="cbtn">2023</button>
+              <button id='btnTotal' class="cbtn selected">Total</button>
             </span>
             <p>This choropleth shows how each LGA in Victoria compared to one another each year in number of cases</p>
           </div>

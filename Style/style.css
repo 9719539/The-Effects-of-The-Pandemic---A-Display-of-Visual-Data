@@ -82,6 +82,10 @@ header a {
   color: #fbbf24;
 }
 
+.selected {
+  color: #fbbf24;
+}
+
 header a:hover {
   color: #f59e0b;
   transition: color 0.15s ease;
@@ -234,4 +238,9 @@ svg {
 
 .line {
   stroke-width: 0.2rem;
+}
+
+#cases {
+  padding: 0rem;
+  margin: 0rem;
 }
