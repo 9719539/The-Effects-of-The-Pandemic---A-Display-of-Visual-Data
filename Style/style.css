@@ -52,6 +52,7 @@ button:hover {
 
 .mainContainer {
   min-height: 40vh;
+  padding: 0rem 3rem;
 }
 
 /* NAVIGATION STYLING */
@@ -151,6 +152,22 @@ footer {
   gap: 1.5rem;
 }
 
+@media (max-width: 960px) {
+  /* make grid responsive to width */
+  .gridContainer {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+/* a grid that's only 1 column regardless of size */
+.gridContainer-1 {
+  display: grid;
+  /* 2 columns for the default grid container */
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  /* approx 24px gap between cols */
+  gap: 1.5rem;
+}
+
 /* CARD STYLING */
 .card {
   border: 1px solid #d1d5db;
@@ -170,6 +187,7 @@ footer {
 
 .cardContent {
   padding: 1.5rem;
+  font-size: 1rem;
 }
 
 /* STYLING FOR SVG AND GRAPHS */
@@ -190,6 +208,8 @@ svg {
 /* styles for tick labels in horizontal stacked bar chart */
 .y-axis text {
   transform: translate(15px, 0px);
+  font-size: 0.8rem;
+  font-weight: bold;
   stroke-width: 0.01rem;
   stroke: black;
 }
@@ -209,4 +229,9 @@ svg {
   font-size: 0.6rem;
   stroke-width: 0.01rem;
   stroke: black;
+  font-weight: bold;
+}
+
+.line {
+  stroke-width: 0.2rem;
 }

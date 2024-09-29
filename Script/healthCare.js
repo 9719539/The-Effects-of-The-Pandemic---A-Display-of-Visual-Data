@@ -10,7 +10,8 @@ function drawChoropleth(id) {
     // "rgb(255,255,217)",
     // "rgb(237,248,177)",
     // "rgb(199,233,180)",
-    // "rgb(127,205,187)",
+    "rgb(195,195,195)",
+    "rgb(127,205,187)",
     "rgb(65,182,196)",
     "rgb(29,145,192)",
     "rgb(34,94,168)",
@@ -22,7 +23,7 @@ function drawChoropleth(id) {
     .geoMercator()
     .center([145, -36.5])
     .translate([w / 2, h / 2])
-    .scale(2450);
+    .scale(2250);
 
   const path = d3.geoPath().projection(projection);
   d3.csv("./Datasets/ncov_cases_by_lga_table.csv").then((csvData) => {
@@ -56,7 +57,7 @@ function drawChoropleth(id) {
         .select(`#${id}`)
         .append("svg")
         .attr("preserveAspectRatio", "xMinYMin meet")
-        .attr("viewBox", "0 0 400 400")
+        .attr("viewBox", [0, 0, w, h])
         .attr("fill", "grey");
 
       // create color domain for our data

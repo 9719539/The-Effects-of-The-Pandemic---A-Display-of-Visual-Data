@@ -1,6 +1,6 @@
 // draw the stacked horizontal bar chart of different activities by month in 2020
 function drawStack(id) {
-  const w = 400;
+  const w = 800;
   const h = 400;
   margin = 20;
 
@@ -80,7 +80,7 @@ function drawStack(id) {
     // create legend at top of graph
     const legend = d3.select("#legend");
     legend
-      .selectAll(".legendtem")
+      .selectAll(".legendItem")
       .data(stackedData)
       .enter()
       .append("div")
@@ -109,9 +109,11 @@ function drawBarChart(id) {
     const mappedData = [...dataMap].filter((_, index) => index !== 0);
     console.log(mappedData);
 
+    // use this to have extra space under the graph to draw our labels
+    const labelPadding = 100;
     // set values
-    const w = 400;
-    const h = 400;
+    const w = 800;
+    const h = 300 + labelPadding;
     const padding = 25;
 
     // create svg
@@ -138,11 +140,11 @@ function drawBarChart(id) {
     const yScale = d3
       .scaleLinear()
       .domain([0, 100])
-      .range([h - padding, padding]);
+      .range([h - padding - labelPadding, padding]);
 
     svg
       .append("g")
-      .attr("transform", `translate(${padding}, ${0})`)
+      .attr("transform", `translate(${padding}, ${-0})`)
       .call(d3.axisLeft(yScale));
 
     // add bars
@@ -153,22 +155,25 @@ function drawBarChart(id) {
       .data(mappedData)
       .enter()
       .append("rect")
+      .attr("transform", `translate(0,-${labelPadding})`)
       .attr("x", (d, i) => xScale(d.key) + padding) // set x dynamically
-      .attr("y", (d) => yScale(d.value)) // set y dynamically
+      .attr("y", (d) => yScale(d.value) + labelPadding) // set y dynamically
       .attr("width", xScale.bandwidth()) // set width to our xScale
-      .attr("height", (d) => h - padding - yScale(d.value))
+      .attr("height", (d) => h - padding - labelPadding - yScale(d.value))
       .attr("fill", "#eab308") // set colour of bars
       .append("title") // create tooltip when hovered
       .text((d) => `${d.key} \n${d.value}%`);
 
     svg
       .append("g")
-      .attr("transform", `translate(${padding}, ${h - padding})`)
+      .attr("class", "x-axis")
+      .attr("transform", `translate(${padding}, ${h - padding - labelPadding})`)
       .call(d3.axisBottom(xScale))
       .selectAll("text")
       .attr("class", "smllabel")
-      .attr("transform", "translate(-10,-5)rotate(-90)")
-      .style("text-anchor", "start");
+      .attr("transform", "translate(-10,0)rotate(-25)")
+      // .attr("transform", "translate(-10,-5)rotate(-90)")
+      .style("text-anchor", "end");
   });
 }
 
@@ -177,9 +182,3 @@ document.addEventListener("DOMContentLoaded", function () {
   drawStack("graph1");
   drawBarChart("graph2");
 });
-
-// A standard bar chart showing how people aged over 18 in Victoria used their
-// JobKeeper stimulus payments in 2020. The data we selected for this visualisation was fairly limited.
-// When dealing with a limited dataset, we found it most practical to approach the visualization of the
-// data with a simplistic method of encoding. This led to the decision to use a bar chart to represent
-// this data.

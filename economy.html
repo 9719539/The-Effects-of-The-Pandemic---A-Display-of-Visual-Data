@@ -7,6 +7,9 @@
   <meta name="keywords" content="html, css, js, d3" />
   <meta name="author" content="Tim Heibach - 9719539, Jesse Hommelhoff - 104868037" />
   <link href="/Style/style.css" rel="stylesheet" type="text/css" />
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <!-- Load script (id for container is hard coded) -->
+  <script src="/Script/economy.js"></script>
   <title>COS30045 Data Visualisation Assignment</title>
 </head>
 
@@ -40,10 +43,14 @@
       <div class="card">
         <div class="cardHeader">
           <h3>Show Me the Money</h3>
-          <p>With radical changes to the global economic climate came global changes to expenditure. Decisions and delegations regarding money had
-            to take many new things into account. Questions were asked, how do we keep people employed? How can those unable to work continue to feed
-            their families? Where should economic resources be focused? Many questions arose during these times, and many changes were made. The data 
-            visualisations below aim to demonstrate two powerful examples of how the economy was impacted by the scale of the Covid 19 Pandemic.
+          <p>With radical changes to the global economic climate came global changes to expenditure. Decisions and
+            delegations regarding money had
+            to take many new things into account. Questions were asked, how do we keep people employed? How can those
+            unable to work continue to feed
+            their families? Where should economic resources be focused? Many questions arose during these times, and
+            many changes were made. The data
+            visualisations below aim to demonstrate two powerful examples of how the economy was impacted by the scale
+            of the Covid 19 Pandemic.
           </p>
         </div>
         <div class="cardButtons">
@@ -63,13 +70,13 @@
         <!-- Visualisation Card example with graph -->
         <div class="card">
           <div class="cardHeader">
-            <h3>A basic bar graph</h3>
+            <h3>Percentage of change in GDP from previous year by million US$ at exchange rate</h3>
+            <div id="legend" class='legend'></div>
           </div>
           <div class="cardContent">
             <div class="svgContainer" id="graph1">
               <!-- Load script (id for container is hard coded) -->
-              <script src="/Script/sampleGraph.js">
-              </script>
+
             </div>
             <p>This bar graph is just an example</p>
           </div>
@@ -92,7 +99,7 @@
       </div>
 
     </div>
-  
+
   </main>
   <footer>
     <div class="footer">
