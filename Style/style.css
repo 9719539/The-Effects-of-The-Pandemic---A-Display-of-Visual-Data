@@ -231,3 +231,7 @@ svg {
   stroke: black;
   font-weight: bold;
 }
+
+.line {
+  stroke-width: 0.2rem;
+}

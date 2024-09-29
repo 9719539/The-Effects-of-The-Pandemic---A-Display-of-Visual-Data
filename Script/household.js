@@ -80,7 +80,7 @@ function drawStack(id) {
     // create legend at top of graph
     const legend = d3.select("#legend");
     legend
-      .selectAll(".legendtem")
+      .selectAll(".legendItem")
       .data(stackedData)
       .enter()
       .append("div")
