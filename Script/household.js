@@ -1,7 +1,7 @@
 // draw the stacked horizontal bar chart of different activities by month in 2020
 function drawStack(id) {
   const w = 800;
-  const h = 400;
+  const h = 600;
   margin = 20;
 
   // load data from csv
@@ -113,7 +113,7 @@ function drawBarChart(id) {
     const labelPadding = 100;
     // set values
     const w = 800;
-    const h = 300 + labelPadding;
+    const h = 500 + labelPadding;
     const padding = 25;
 
     // create svg
@@ -160,7 +160,7 @@ function drawBarChart(id) {
       .attr("y", (d) => yScale(d.value) + labelPadding) // set y dynamically
       .attr("width", xScale.bandwidth()) // set width to our xScale
       .attr("height", (d) => h - padding - labelPadding - yScale(d.value))
-      .attr("fill", "#eab308") // set colour of bars
+      .attr("fill", (d, i) => d3.schemeCategory10[i]) // set colour of bars
       .append("title") // create tooltip when hovered
       .text((d) => `${d.key} \n${d.value}%`);
 
