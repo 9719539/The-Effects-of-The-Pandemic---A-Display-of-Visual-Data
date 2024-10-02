@@ -107,7 +107,6 @@ function drawBarChart(id) {
     }));
     // remove first entry from map as it's not useful for our chart
     const mappedData = [...dataMap].filter((_, index) => index !== 0);
-    console.log(mappedData);
 
     // use this to have extra space under the graph to draw our labels
     const labelPadding = 100;
@@ -172,7 +171,6 @@ function drawBarChart(id) {
       .selectAll("text")
       .attr("class", "smllabel")
       .attr("transform", "translate(-10,0)rotate(-25)")
-      // .attr("transform", "translate(-10,-5)rotate(-90)")
       .style("text-anchor", "end");
   });
 }
