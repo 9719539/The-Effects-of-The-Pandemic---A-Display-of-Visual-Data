@@ -17,11 +17,10 @@ function calcPercentChange(entries) {
 }
 
 // draw the area chart showing change in GDP by year from 2018-2020 for AUS, USA, GBR, CHN, NZL, ITA
-function drawAreaChart(id) {
+function drawLineChart(id) {
   const margin = { top: 10, right: 30, bottom: 30, left: 60 };
   const w = 800 - margin.left - margin.right;
   const h = 600 - margin.top - margin.bottom;
-  // padding = 20;
 
   const countries = ["AUS", "USA", "GBR", "CHN", "NZL", "ITA"]; // Country codes
 
@@ -45,22 +44,11 @@ function drawAreaChart(id) {
       .map(([key, values]) => {
         const data = values.map((d) => ({ year: d.Year, value: +d.Value }));
         const entries = calcPercentChange(data);
-        console.log(entries);
         return {
           country: key,
           entries: entries,
         };
       });
-    console.log(mappedData);
-
-    // const ausData = mappedData.find((d) => d.country === "AUS").entries;
-
-    // draw svg
-    // const svg = d3
-    //   .select(`#${id}`)
-    //   .append("svg")
-    //   .attr("preserveAspectRatio", "xMinYMin meet")
-    //   .attr("viewBox", [0, 0, w, h]);
 
     const svg = d3
       .select(`#${id}`)
@@ -122,7 +110,6 @@ function drawAreaChart(id) {
         .style("stroke", d3.schemeCategory10[i]) // Use D3 color scheme for different colors
         .attr("fill", "none");
 
-      console.log(countryData);
       // create legend at top of graph
       const legend = d3.select("#legend");
       legend
@@ -139,33 +126,127 @@ function drawAreaChart(id) {
           ) => `<div style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; background: ${d3.schemeCategory10[i]};"></div>
       <span>${d.country}</span>`
         );
+    });
+  });
+}
 
-      // Add a legend (optional)
-      // const legend = d3.select("#legend");
-      // const legend = g
-      //   .append("g")
-      //   .attr("transform", `translate(${w - 120},0)`)
-      //   .attr("class", "legendItem");
-      // mappedData.forEach((countryData, i) => {
-      //   legend
-      //     .append("rect")
-      //     .attr("x", 0)
-      //     .attr("y", i * 20)
-      //     .attr("width", 18)
-      //     .attr("height", 18)
-      //     .style("fill", d3.schemeCategory10[i]);
+function drawAreaChart(id) {
+  const margin = { top: 10, right: 30, bottom: 30, left: 60 };
+  const w = 800 - margin.left - margin.right;
+  const h = 600 - margin.top - margin.bottom;
 
-      //   legend
-      //     .append("text")
-      //     .attr("x", 20)
-      //     .attr("y", i * 20 + 15)
-      //     .text(countryData.country);
-      // });
+  // get just italy and australia
+  const countries = ["AUS", "ITA"]; // Country codes
+
+  // load data from csv
+  const dir = "../Datasets/HEALTH_ECOR-2022-1-EN-20230430T100058.csv";
+  d3.csv(dir).then((data) => {
+    // filter only GDP data for specified countries within the year range
+    const gdpData = data.filter(
+      (d) =>
+        d.Variable === "Average annual wages" &&
+        d.Measure === "Current prices in NCU" &&
+        // d.Measure === "/capita, US$ exchange rate" && // per capita data
+        // d.Measure === "Price index (2015=100)" && // data scaled with 2015 dollar value with inflation accounted for
+        countries.includes(d.COU) &&
+        d.Year >= 2017 &&
+        d.Year <= 2020
+    );
+    //map data to make more easily readable
+    const mappedData = d3
+      .groups(gdpData, (d) => d.COU)
+      .map(([key, values]) => {
+        const data = values.map((d) => ({ year: d.Year, value: +d.Value }));
+        const entries = calcPercentChange(data);
+        return {
+          country: key,
+          entries: entries,
+        };
+      });
+
+    const svg = d3
+      .select(`#${id}`)
+      .append("svg")
+      .attr("preserveAspectRatio", "xMinYMin meet")
+      .attr("viewBox", [0, 0, w, h]);
+
+    const g = svg
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // Prepare the data
+    const years = mappedData[0].entries.map((d) => d.year);
+
+    // Define scales
+    const xScale = d3
+      .scalePoint()
+      .domain(years)
+      .range([0, w - margin.left - margin.right]);
+
+    const yScale = d3
+      .scaleLinear()
+      .domain([
+        d3.min(mappedData, (d) => d3.min(d.entries, (e) => e.change)),
+        d3.max(mappedData, (d) => d3.max(d.entries, (e) => e.change)),
+      ])
+      .nice()
+      .range([h, 0]);
+
+    // define area
+    const area = d3
+      .area()
+      .x((d) => xScale(d.year))
+      .y0(() => yScale.range()[0])
+      .y1((d) => yScale(d.value));
+
+    // Draw axes
+    g.append("g")
+      .attr("class", "axis axis--x")
+      .attr("transform", `translate(0,${h - margin.bottom})`)
+      .call(d3.axisBottom(xScale));
+
+    g.append("g")
+      .attr("class", "axis axis--y")
+      .attr("transform", `translate(0,${-margin.bottom})`)
+      .call(d3.axisLeft(yScale));
+
+    // Draw lines for each country
+    mappedData.forEach((countryData, i) => {
+      g.append("path")
+        .datum(
+          countryData.entries.map((entry) => ({
+            year: entry.year,
+            value: entry.change,
+          }))
+        )
+        .attr("class", "area")
+        .attr("transform", `translate(0,${-margin.bottom})`)
+        .attr("d", area)
+        .style("stroke", d3.schemeCategory10[i]) // Use D3 color scheme for different colors
+        .attr("fill", d3.schemeCategory10[i]);
+
+      // create legend at top of graph
+      const legend = d3.select("#legend2");
+      legend
+        .selectAll(".legendItem")
+        .data(mappedData)
+        .enter()
+        .append("div")
+        .attr("class", "legendItem")
+        .html(
+          // create a box for each colour to display our legend
+          (
+            d,
+            i
+          ) => `<div style="width: 1.5rem; height: 1.5rem; margin-right: 0.5rem; background: ${d3.schemeCategory10[i]};"></div>
+      <span>${d.country}</span>`
+        );
     });
   });
 }
 
 // Draw the graph once the DOM is fully loaded to the hardcoded id
 document.addEventListener("DOMContentLoaded", function () {
-  drawAreaChart("graph1");
+  drawLineChart("graph1");
+  drawAreaChart("graph2");
 });

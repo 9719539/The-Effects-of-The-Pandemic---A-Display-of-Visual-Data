@@ -7,7 +7,7 @@
   <meta name="keywords" content="html, css, js, d3" />
   <meta name="author" content="Tim Heibach - 9719539, Jesse Hommelhoff - 104868037" />
   <link href="/Style/style.css" rel="stylesheet" type="text/css" />
-  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
   <!-- Load script (id for container is hard coded) -->
   <script src="/Script/healthCare.js"></script>
   <title>COS30045 Data Visualisation Assignment</title>
@@ -62,42 +62,59 @@
         </div>
       </div>
 
-
       <!-- Grid for displaying multiple graphs -->
       <!-- all content in the grid will be roughly half screen size -->
       <div class="gridContainer">
         <!-- Visualisation Card example with graph -->
         <div class="card">
           <div class="cardHeader">
-            <h3>A basic bar graph</h3>
-            <h4 id="choroInfo">Highest cases: </h4>
+            <h3>Number of cases broken down by Victorian LGA</h3>
+            <h4 id="highestCases">Highest number of cases: </h4>
+            <span id="cases">Mouse over an LGA to see the number of cases</span>
           </div>
           <div class="cardContent">
             <div class="svgContainer" id="graph1">
             </div>
             <span>
-              <button id='btn2020'>2020</button>
-              <button id='btn2021'>2021</button>
-              <button id='btn2022'>2022</button>
-              <button id='btn2023'>2023</button>
-              <button id='btnTotal'>Total</button>
+              <button id='btn2020' class="cbtn">2020</button>
+              <button id='btn2021' class="cbtn">2021</button>
+              <button id='btn2022' class="cbtn">2022</button>
+              <button id='btn2023' class="cbtn">2023</button>
+              <button id='btnTotal' class="cbtn selected">Total</button>
             </span>
-            <p>This choropleth shows how each LGA in Victoria compared to one another each year in number of cases</p>
+            <h3>This choropleth map shows the total number of SARS-COV-2 infection cases by local government area within
+              Victoria</h3>
+            <p>Victorians experienced their fair share of coronavirus cases, unsurprisingly, the areas of high density
+              reported
+              larger numbers of cases in their area, whilst remote areas were less exposed to the spread of the virus.
+            </p>
+            <p><strong>This map is interactive!</strong> hover your mouse of the areas to see the number of cases for
+              that area.
+            </p>
+            <p>Source: OECD Health Statistics 2020, Healthcare Resources</p>
           </div>
         </div>
 
         <!-- Visualisation Card example with graph -->
         <div class="card">
           <div class="cardHeader">
-            <h3>A basic bar graph</h3>
+            <h3>This treemap shows how some of the main resources of the Australia healthcare sector compared in numbers
+              during the pandemic (2020)</h3>
           </div>
           <div class="cardContent">
             <div class="svgContainer" id="graph2">
-              <!-- Load script (id for container is hard coded) -->
-              <script src="/Script/sampleGraph2.js">
-              </script>
             </div>
-            <p>This bar graph is just an example</p>
+            <p>With hospitals almost overflowing and clinics performing seemingly endless phone consultations to unwell
+              patients,
+              the health sector experienced drastic pressure from the effects of Covid-19. Retired health professionals
+              were incentivised
+              to return to work, whilst some students were given the opportunity to receive hands-on experience by
+              helping in the busy hospitals.
+              It really was a unique time for healthcare, and the data shows an enormous proportion of the healthcare
+              sector was made up by practicing nurses, real life heroes many would say are the backbone of our hospitals
+              and bravely put themselves at risk during the pandemic to ensure people received the care they needed to
+              deal with the immense toll of the coronavirus.</p>
+            <p>Source: OECD Health Statistics 2020, Healthcare Resources</p>
           </div>
         </div>
       </div>
