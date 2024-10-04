@@ -6,7 +6,7 @@ function drawStack(id) {
 
   // load data from csv
   const dir =
-    "../Datasets/Persons in Victoria aged 18 years and over, participation in selected activities one or more times a week in the last four weeks, September, October and December 2020.csv";
+    "./Datasets/Persons in Victoria aged 18 years and over, participation in selected activities one or more times a week in the last four weeks, September, October and December 2020.csv";
   d3.csv(dir).then((data) => {
     const transformedData = data.map((d) => ({
       activity:
@@ -99,7 +99,7 @@ function drawStack(id) {
 function drawBarChart(id) {
   // load data from csv
   const dir =
-    "../Datasets/Stimulus payment uses for persons aged 18 years and over receiving the JobKeeper Payment(a)(b).csv";
+    "./Datasets/Stimulus payment uses for persons aged 18 years and over receiving the JobKeeper Payment(a)(b).csv";
   d3.csv(dir).then((data) => {
     const dataMap = Object.entries(data[0]).map(([key, value]) => ({
       key: key.slice(0, -3), // slice the last 3 characters from the string to remove (%)
