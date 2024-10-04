@@ -25,7 +25,7 @@ function drawLineChart(id) {
   const countries = ["AUS", "USA", "GBR", "CHN", "NZL", "ITA"]; // Country codes
 
   // load data from csv
-  const dir = "../Datasets/HEALTH_ECOR-2022-1-EN-20230430T100058.csv";
+  const dir = "./Datasets/HEALTH_ECOR-2022-1-EN-20230430T100058.csv";
   d3.csv(dir).then((data) => {
     // filter only GDP data for specified countries within the year range
     const gdpData = data.filter(
@@ -139,7 +139,7 @@ function drawAreaChart(id) {
   const countries = ["AUS", "ITA"]; // Country codes
 
   // load data from csv
-  const dir = "../Datasets/HEALTH_ECOR-2022-1-EN-20230430T100058.csv";
+  const dir = "./Datasets/HEALTH_ECOR-2022-1-EN-20230430T100058.csv";
   d3.csv(dir).then((data) => {
     // filter only GDP data for specified countries within the year range
     const gdpData = data.filter(

@@ -70,7 +70,6 @@ function drawChoropleth(id) {
       max = d3.max(mappedData, (d) => d[dataRange]);
       d3.select("#highestCases").text(`Highest number of cases: ${max}`);
 
-      console.log(json.features);
       // draw lgas
       const paths = svg
         .append("g")
@@ -178,7 +177,7 @@ function drawTreemap(id) {
     "Practising physicians",
   ];
   // load data from csv
-  const dir = "../Datasets/HEALTH_REAC-2022-1-EN-20230430T100122.csv";
+  const dir = "./Datasets/HEALTH_REAC-2022-1-EN-20230430T100122.csv";
   d3.csv(dir).then((data) => {
     // filter only relevant healthcare data
     const medData = data.filter(
